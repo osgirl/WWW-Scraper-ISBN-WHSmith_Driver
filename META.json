@@ -1,6 +1,6 @@
 {
     "name": "WWW-Scraper-ISBN-WHSmith_Driver",
-    "version": "0.04",
+    "version": "0.05",
     "abstract": "Search driver for the WHSmith online book catalog",
     "author": ["Barbie <barbie@cpan.org>"],
 
@@ -29,6 +29,7 @@
         },
         "test" : {
             "requires": {
+                "Data::Dumper": "0",
                 "IO::File": "0",
                 "Test::More": "0.70"
             },
@@ -44,7 +45,7 @@
     "provides": {
         "WWW::Scraper::ISBN::WHSmith_Driver": {
             "file": "lib/WWW/Scraper/ISBN/WHSmith_Driver.pm",
-            "version": "0.04"
+            "version": "0.05"
         }
     },
     "no_index": {
@@ -52,7 +53,12 @@
     },
 
     "resources": {
-        "license": "http://dev.perl.org/licenses/",
-        "bugtracker": { "web": "http://rt.cpan.org/Public/Dist/Display.html?Name=WWW-Scraper-ISBN-WHSmith_Driver" }
+        "license": "http://www.perlfoundation.org/artistic_license_2_0",
+        "bugtracker": { "web": "http://rt.cpan.org/Public/Dist/Display.html?Name=WWW-Scraper-ISBN-WHSmith_Driver" },
+        "repository": {
+            "url": "git://github.com/barbie/www-scraper-isbn-whsmith_driver.git",
+            "web": "http://github.com/barbie/www-scraper-isbn-whsmith_driver",
+            "type": "git"
+        }
     }
 }
