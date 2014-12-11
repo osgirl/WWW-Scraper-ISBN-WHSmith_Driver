@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                   WWW-Scraper-ISBN-WHSmith_Driver
-version:                0.06
+version:                0.07
 abstract:               Search driver for the WHSmith online book catalog
 author:
   - Barbie <barbie@cpan.org>
@@ -27,7 +27,7 @@ build_requires:
 provides:
   WWW::Scraper::ISBN::WHSmith_Driver:
     file:     lib/WWW/Scraper/ISBN/WHSmith_Driver.pm
-    version:  0.06
+    version:  0.07
 
 no_index:
   directory:
@@ -42,4 +42,4 @@ resources:
 meta-spec:
    version:   1.4
    url:       http://module-build.sourceforge.net/META-spec-v1.4.html
-generated_by: Hand 1.0
+generated_by: The Hand of Barbie 1.0

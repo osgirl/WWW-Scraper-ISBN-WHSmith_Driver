@@ -24,11 +24,11 @@ my %tests = (
         [ 'is',     'pages',        '432'                           ],
         [ 'is',     'width',        undef                           ],
         [ 'is',     'height',       undef                           ],
-        [ 'is',     'weight',       299                             ],
+        [ 'like',   'weight',       qr|^\d+$|                       ],
         [ 'is',     'image_link',   'http://btmedia.whsmith.co.uk/pws/client/images/catalogue/products/9780/55/2557795/xlarge/9780552557795_1.jpg' ],
-        [ 'is',     'thumb_link',   'http://btmedia.whsmith.co.uk/pws/client/images/catalogue/products/9780/55/2557795/xlarge/9780552557795_1.jpg' ],
+        [ 'is',     'thumb_link',   'http://btmedia.whsmith.co.uk/pws/client/images/catalogue/products/9780/55/2557795/small/9780552557795_1.jpg' ],
         [ 'like',   'description',  qr|On the day the world ends|   ],
-        [ 'is',     'book_link',    'http://www.whsmith.co.uk/products/nation/product/9780552557795' ]
+        [ 'is',     'book_link',    'http://www.whsmith.co.uk/pws/ProductDetails.ice?ProductID=9780552557795&keywords=9780552557795&redirect=true' ]
     ],
     '9780847834815' => [
         [ 'is',     'isbn',         '9780847834815'                 ],
@@ -43,11 +43,11 @@ my %tests = (
         [ 'is',     'pages',         208                            ],
         [ 'is',     'width',        undef                           ],
         [ 'is',     'height',       undef                           ],
-        [ 'is',     'weight',        1397                           ],
+        [ 'like',   'weight',       qr|^\d+$|                       ],
         [ 'is',     'image_link',   'http://btmedia.whsmith.co.uk/pws/client/images/catalogue/products/9780/84/7834815/xlarge/9780847834815_1.jpg' ],
-        [ 'is',     'thumb_link',   'http://btmedia.whsmith.co.uk/pws/client/images/catalogue/products/9780/84/7834815/xlarge/9780847834815_1.jpg' ],
+        [ 'is',     'thumb_link',   'http://btmedia.whsmith.co.uk/pws/client/images/catalogue/products/9780/84/7834815/small/9780847834815_1.jpg' ],
         [ 'like',   'description',  qr|The definitive look at one of the most iconic rock bands of all time| ],
-        [ 'is',     'book_link',    'http://www.whsmith.co.uk/products/joy-division/product/9780847834815' ]
+        [ 'is',     'book_link',    'http://www.whsmith.co.uk/pws/ProductDetails.ice?ProductID=9780847834815&keywords=9780847834815&redirect=true' ]
     ],
 );
 
@@ -116,7 +116,8 @@ SKIP: {
 sub pingtest {
     my $domain = shift or return 0;
     my $cmd =   $^O =~ /solaris/i                           ? "ping -s $domain 56 1" :
-                $^O =~ /dos|os2|mswin32|netware|cygwin/i    ? "ping -n 1 $domain "
+                $^O =~ /cygwin/i                            ? "ping $domain 56 1" : # ping [ -dfqrv ] host [ packetsize [ count [ preload ]]]
+                $^O =~ /dos|os2|mswin32|netware/i           ? "ping -n 1 $domain "
                                                             : "ping -c 1 $domain >/dev/null 2>&1";
 
     eval { system($cmd) }; 
